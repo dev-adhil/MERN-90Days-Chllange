@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: linear-gradient(to bottom, #1f1f1f, #000000);
+    background: #121212;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    
+  }
+  /* .login-box {
+    background: linear-gradient(to bottom, #1f1f1f, #000000);
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+   */
+  
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-box {
+    background-color: #181818;
+    padding: 40px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+  }
+  
+  .logo {
+    width: 40px;
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 30px;
+  }
+  
+  .social-buttons button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #282828;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .social-buttons button:hover {
+    background-color: #3a3a3a;
+  }
+  
+  form {
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  label {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 6px;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #121212;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+  .continue-btn {
+    width: 100%;
+    background-color: #1ed760;
+    color: black;
+    font-weight: bold;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .continue-btn:hover {
+    background-color: #1fdf64;
+  }
+  
+  .signup-text {
+    margin-top: 20px;
+    font-size: 13px;
+  }
+  
+  .signup-text a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  hr {
+    border: 0;
+    border-top: 1px solid #2a2a2a;
+    margin: 30px 0;
+  }
+  
