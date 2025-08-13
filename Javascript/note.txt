@@ -1,0 +1,439 @@
+
+Js
+
+Every thing happen js execution created 
+
+js is syncronus single threaded language 
+
+Even before code start executing memmory  is allocated to this all variables and functions
+
+when ever the js code executing a global execution will created
+
+debuger you can see that CallStack created you can Control that
+
+once the code fully exected the call stack will empty
+
+Call stack 
+--------------
+
+1 - Execution context created 
+2 - Program stack
+3 - Control stack
+4 - Runtime stack
+5 - 
+
+
+* 
+
+when ever the js code executing a global execution will created
+it will two component again 1 - memmory component 2 - code component 
+so the memmory component also known as varriable environment and code component  also known as 
+
+and the first phase memmory will allocate 
+
+here ex : var x = 10 and a() and b()
+ so here memmory allcate x and a() b() variable and functions memmory allocate
+ here variable x memmory allocate time undefined that mean no value 
+ in function line new global execution created
+ 
+ 
+ 
+ 
+ 
+ 
+  memmory componen and code component created
+
+---
+
+## **1. What is Hoisting?**
+
+Hoisting is JavaScript’s way of **moving variable and function declarations to the top of their scope** **before** the code runs.
+
+But… only the **declaration** is moved, **not the value**.
+
+Think of it like this:
+
+> “JavaScript reads your script first, pulls out all the declared variables and functions, and places them at the top, so you can use them earlier than they appear in your code.”
+
+---
+
+## **2. Example with `var`** (function/global scope)
+
+```javascript
+console.log(a); // Output: undefined (not error!)
+var a = 5;
+console.log(a); // Output: 5
+```
+
+**What JS does behind the scenes:**
+
+```javascript
+var a;        // Declaration is moved up
+console.log(a);
+a = 5;        // Assignment stays here
+console.log(a);
+```
+
+---
+
+## **3. Example with `let` and `const`** (block scope)
+
+```javascript
+console.log(b); // ❌ ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+```
+
+* `let` and `const` are **hoisted** too, but they are in a **"temporal dead zone"** until the line where they are actually declared.
+* This means you can’t use them before you write them.
+
+---
+
+## **4. Function Hoisting**
+
+Functions are fully hoisted, meaning you can call them **before** they are declared.
+
+```javascript
+sayHello(); // ✅ Works
+function sayHello() {
+  console.log("Hello Adhil!");
+}
+```
+
+---
+
+## **5. Summary Table**
+
+| Keyword  | Hoisted? | Value Before Initialization |
+| -------- | -------- | --------------------------- |
+| var      | Yes      | `undefined`                 |
+| let      | Yes      | Error (Temporal Dead Zone)  |
+| const    | Yes      | Error (Temporal Dead Zone)  |
+| function | Yes      | Full function available     |
+
+---
+
+💡 **Easy way to remember:**
+
+> Hoisting = "JS picks up your declarations and puts them at the top, but leaves the values where they are."
+
+---
+
+
+
+
+
+
+1)
+
+getname()
+console.log(x)
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+op: 
+
+undefined
+hellow world
+
+2)
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+console.log(getname)
+
+op: 
+
+ƒ getname(){
+
+}
+
+
+3)
+
+console.log(getname)
+
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+
+op: 
+
+ƒ getname(){
+
+}
+
+
+
+4)
+
+getname()
+console.log(x)
+console.log(getname)
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+OP : 
+
+hellow world
+undefined
+ƒ getname(){
+    console.log("hellow world")
+}
+
+here we firstly initialising time we calling a var x we getting undefined
+but we calling initialising time a function we getting function
+
+
+Scope functions
+
+Global scope and local scope
+
+ What is “Scope”?
+
+Think of scope as where your variable can be seen or used in your code.
+It’s like having a room in your house — some things are in the whole house (everyone can see them), 
+and some things are inside just one room (only people in that room can see them).
+
+
+Global Scope 🌍
+Definition: A variable is in global scope if you can access it anywhere in your program.
+
+In JavaScript, if you declare a variable outside of any function, it becomes global.
+
+Example:
+
+javascript
+Copy code
+let name = "Adhil"; // Global variable
+
+function sayHello() {
+  console.log("Hello " + name); // Can use 'name' here
+}
+
+sayHello(); // Output: Hello Adhil
+console.log(name); // Output: Adhil
+✅ Global variables can be used anywhere in the code.
+
+3. Local Scope 🏠
+Definition: A variable is in local scope if it is declared inside a function or block (like { }).
+
+Only code inside that function/block can see it.
+
+Example:
+
+javascript
+Copy code
+function greet() {
+  let message = "Hi Adhil"; // Local variable
+  console.log(message); // Works here
+}
+
+greet(); // Output: Hi Adhil
+console.log(message); // ❌ Error: message is not defined
+❌ You cannot use message outside the function because it’s local.
+
+4. Block Scope (Extra for You)
+In modern JavaScript:
+
+let and const have block scope → only exist inside { }
+
+var is function-scoped → ignores { } unless it’s inside a function.
+
+Example:
+
+javascript
+Copy code
+if (true) {
+  let a = 10;
+  var b = 20;
+}
+console.log(b); // ✅ 20
+console.log(a); // ❌ Error: a is not defined
+💡 Summary Table
+
+Scope Type	Where You Can Use It
+Global	Anywhere in the file
+Local	Only inside the function/block where declared
+Block	Only inside { } if using let/const
+
+
+Now lets check notdefined and undefined
+
+eg:
+
+getname()
+console.log(x)
+console.log(getname)
+
+
+function getname(){
+    console.log("hellow world")
+}
+
+
+here x is we not defined so thats mean notdefined
+
+now js is throw a Error 
+
+Uncaught ReferenceError: x is not defined
+
+this mean x is not present in the memmory 
+and that mean x is not initialised in the program
+
+
+
+Now lets check another intresting thing
+
+getname function lets change arrow function
+
+getname()
+console.log(x)
+console.log(getname)
+
+var x = 7 
+
+var getname = () => {
+    console.log("hellow world")
+}
+
+
+op:
+
+Uncaught ReferenceError: getname is not defined
+
+
+its saying get name is not a function
+
+in this case getname is arrow function so arrow function behave just a variable
+now get name doesnot like behave like a function its behave like a variable 
+so it will do is 
+
+even before we exicute the whole code so now in the memmory allocation phase of the execution context  
+it will allcate just like it allocates undefined to x  it also allocate undefined to getname
+
+eg:
+
+getname()
+console.log(x)
+console.log(getname)
+
+var x = 7 
+
+function getname2() {
+
+}
+
+var getname = () => {
+    console.log("hellow world")
+}
+
+now you can see deepcheck 
+
+there memmory allocated getname2 but arrow function getname is a variable like memmory allocated
+
+
+Now lets check another intresting thing
+
+var getname2 = function() {
+
+}
+
+this also behave like a varriable
+
+
+op:
+
+getname:undefined
+
+undefined mean its a variable memmory allocated
+
+
+Imp
+
+Only the proper way of declaration 
+it will copy the whole code 
+
+scope you can see getname2 is whole function
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+How function works in js & varriable
+
+
+eg:
+
+var x = 1 
+a();
+b();
+console.log(x);
+
+
+function a() {
+    var x = 10;
+    console.log(x)
+}
+
+function b() {
+    var x = 100;
+    console.log(x)
+}  
+
+
+i gona tell how function invok behind the scene 
+first lets see the output will be
+
+OP:
+    10
+    15
+    100
+
+
+how this get
+
+this behind 
+
+here ex : var x = 10 and a(){...} and b(){....}
+ so here memmory allcate x and a() b() variable and functions memmory allocate
+ here variable x memmory allocate time undefined that mean no value 
+ in function line new global execution created
+ a() b() code line time a call stack create a() function have seperate memmory create and store there after this line any return then pass global execution
+ a() function op pass main global there console show output
+ and check global exucation value based call stack function value pass
+
+
+
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Windows And this Keyword !!!!!!
+
+
+ Do you know the shortest js file hahahahahah its js empty file
+
+ 
