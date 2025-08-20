@@ -1,12 +1,13 @@
-{
-    var a = 10;
-    let b = 20;
-    const c = 30;
-    console.log(a)
-    console.log(b)
-    console.log(c)
-}
+function x(){
 
-    console.log(a)
-    console.log(b)
-    console.log(c)
+    for(var i = 1; i<=5; i++){
+        function close(){
+            setTimeout(function (){
+        console.log(i)
+    },i * 1000)
+        }
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()

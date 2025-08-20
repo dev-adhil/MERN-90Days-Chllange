@@ -1206,3 +1206,509 @@ var a = 100
 this varriable shadows the varriable 
 if i try to access a inside the block inside var a = 10; this varriable shadows varriable
 
+
+let b = 100;
+{
+    var a = 10;
+    let b = 20;
+    const c = 30;
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+console.log(b)
+
+scope in console
+block:
+    b:20
+    c:30
+
+script:
+    b:100
+
+global:
+    a:10
+
+you can see all are coming diffrent memmory space
+
+op:
+
+10
+script.js:7 20
+script.js:8 30
+script.js:11 100
+
+now shadowing another concept in function
+
+in function scope shadowing behaviour similier way 
+
+var c = 100;
+
+function x(){
+    var c = 30;
+    console.log(window.c)
+    window.c = 20;
+}
+x()
+console.log(c)
+
+op:
+100
+script.js:9 20 
+this is shadowing
+
+there is something illegal shadowing
+
+let a = 20;
+
+{
+    var a = 30
+}
+
+op:
+script.js:4 Uncaught SyntaxError: Identifier 'a' has already been declared (at script.js:4:9)
+
+this is calling illegal shadowing
+
+
+let a = 20;
+
+{
+    let a = 30
+}
+
+now you can shadowing you use let using then use let  but you cannot shadow let using var  that illegal shadowing
+
+but viceversa you can use 
+
+var a = 20;
+
+{
+    let a = 30
+}
+
+you can use this this is valid 
+why this valid 
+
+if a variable shadowing something it should not crossing the boundry of it scope in a particular scope  a let cannot be redeclared 
+so var should not cross this limit or the boundry  over here and when i said not crossing boundries so what are the boundry of var
+remember a var is a functional scope 
+
+let a = 20;
+
+function x(){
+    let a = 30
+}
+
+now lets put function now not error var have some boundries it is not interfear in with this a now this is fine this is not illegal shadowing 
+in case const it behave same 
+
+const a = 20;
+
+function x(){
+    const a = 30
+}
+
+its also memmory space and its totally fine 
+block scope also follow lexical scope 
+
+const a = 20;
+
+{
+    const a = 100
+    {
+        const a = 200
+        console.log(a)
+    }
+}
+
+op:
+200
+
+const a = 20;
+
+{
+    const a = 100
+    {
+        const a = 200
+    }
+    console.log(a)
+}
+
+op:
+100
+
+the nearest block value getting op
+
+the scope in console
+block:
+    a:200
+
+block:
+    a:100
+
+script:
+    a:20
+
+
+this follow lexical chain pattern 
+```````````````````
+if 
+
+const a = 20;
+
+{
+    const a = 100
+    {
+    console.log(a)
+    }
+}
+
+now op: 100 
+
+nearest value
+
+in we write console outside
+
+const a = 20;
+
+{
+    const a = 100
+    {
+        const a = 200
+    }
+}
+console.log(a)
+
+op: 20
+
+the lexical scope work same way inside the block also
+
+
+lets say avout arrow function !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+let me tell you that 
+
+wheather declare a function keayword or arrow function we feel that those might have diffrent scope but they are exactly same these all this scope rules 
+which work on function are exactly same in the arrow function too so not need worry about learning diffrently scope for arrow functions than normal function
+they are absolutly same 
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Closures
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).
+In other words, a closure gives a function access to its outer scope. In JavaScript, closures are created every time a function is created, 
+at function creation time.
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    y()
+}
+x()
+
+this is clousure 
+
+clousure basically mean that a function bind together with it lexical environment
+
+clousure is a function bind together with lexical environment or clousure along with the lexical scope together together bundle is known as clousure
+its forms a clousure function alongs to the lexical scope
+
+debugging console
+
+clousure x:
+    a:7
+
+
+
+You know functions are heart of javascript functions are very beautiful in javascript 
+what we doing doing here function grab it and asign function to a varriable
+
+function x (){
+    var a = function y(){
+        console.log(a);
+    }
+    y()
+    
+}
+x()
+
+
+and you can pass to a function
+
+function x (){
+    var a = 7
+
+   y() 
+}
+x(function y(){
+        console.log(a);
+    })
+
+most of programing languages not allow this 
+
+AND similierly you can pass even return this function from function
+yes you return this function out of function
+how could you put just return the function
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    return y;
+}
+x()
+
+here return the function outside
+whats the mean when you return y 
+
+so y litraly is like the function itself the whole function code y(){...} when you return it 
+what it return actually what will happen
+once you invoke the x() it returns y and it returns to the y place where the function was invoked 
+so thats mean when you exected this 
+y will return over here x() grab to this in to a varriable and see what it is 
+
+var z = x()    
+
+ok lets see what will be the return value of function call will be 
+lets just kind of console.log(z)
+
+yes the out put giving the function y(){...}
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    return y;
+}
+var z = x()
+console.log(x)
+
+//...........
+z();
+
+we calling z()
+if they  return then also they still maintain lexical scope they remember where they where actually present               !!!!!!!!!!!!!!
+so they x no longer exists but still y() function remember its lexical scope where it came from 
+
+function are beautiful when they return from another function this still maintains their lexical scope
+they remember where they actually present
+so there is no x() no were exist nothing is there but still this y() function remembers its lexical scope where it came from 
+so it came from here it remember when there was a and it has the binding strong there 
+
+in simple way
+
+it returns y not just function code was returned but closure code were return the closure includes the first function along with lexical scope 
+that was return its not a function but whole clousure  function along with lexical scope that was return and it was put inside z()
+when execute z some  where in your program it still remember the a still remember the refrence to the a and try to find out value of a which is 7 and it kind of present
+thats is clousure
+
+
+lets check some confusing example
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    return y;
+}
+var z = x()
+console.log(x)
+
+op:
+7
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    a = 100
+    return y;
+}
+var z = x()
+console.log(x)
+
+op:
+100
+
+
+lets whrite whole code another function scope chain
+
+function z() {
+    var b = 200
+  function x() {
+    var a = 7;
+    function y() {
+      console.log(a,b);
+    }
+    y()
+  }
+  x()
+}
+z()
+
+debugging console
+
+clousure (x):
+    a:7
+closure (z):
+    b:200
+
+!!!!!!!!!!!!!!!!!!
+
+USES OF CLOSURES :
+    - Module Design Pattern
+    - Currying
+    - Functions like once
+    - memoize
+    - Maintain state in async world
+    - setTimeout
+    - Iterators
+    - and many more...
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+setTimeout
+-----------
+
+function x(){
+    var i =100
+    setTimeout(function (){
+        console.log(i)
+    },3000)
+    console.log("Welcome mern challenge")
+}
+x()
+
+op:
+Welcome mern challenge
+100
+
+here print Welcome mern challenge then wait timing and print i value
+
+many people think javascript wait for here nooo 
+javascript doesnot wait anyone 
+setTimeout also not wait and javascript also not wait anyone
+
+how setTimeout work 
+
+why printing like this bcz let me tell one this first setTimeout inside function closure so this function remembers
+the reference to i and it is like forms a clousure so where ever function goes it takes the reference of i along with it
+that was clousure is right and what about setTimeout do it is take this call back function and stores it in to some place and 
+attached the timmer to it 
+
+once more 
+
+it takes the call back function and it attaches the timmer on 3000 mili second to it and it stores some where and it javascript proceed
+it doesnot wait for anything it just goes to the next line and print Welcome mern challenge thats how javascript work 
+and once timer expire  once the 3000 mili second done that timer expire it takes that function put it agains to the call stack and runs it
+thats  how setTimeout work 
+
+lets do some diffrent type thing using setTimeout
+
+function x(){
+
+    for(var i = 1; i<=5; i++){
+        setTimeout(function (){
+        console.log(i)
+    },i * 1000)
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()
+
+op:
+Welcome mern challenge
+6
+6
+6
+6
+6
+
+
+why printing 6 why bcz of closure
+
+what will happen when the setTimeout takes this functionnad store it some where and attaches the timer so that function remember the reference to i
+so let me thinks clear i have told you in the clousure video also that it remember the refrence to i not the value of i it refrence to i 
+when the loop run first time like kind of makes a copy of function attaches timer and also remember the reference of i similierly this 
+5 copy of Functions all of them are pointing to same refrence of i bcz the environment of all this functions are same all of the copy of set timeout 
+callback function the reffrence to the i it referce to the same memmory space right 
+2nd thing javascript wait for anything it run the loop again and again it will just quickly push that or store that function setTimeout store that function
+all that 5 function and javascript move on it doesnot wait for setTimeout expire so it will print Welcome mern challenge and when the timer expire 
+it is too late and the value of i bcz the loop constantly running 1 2 3 4 5 6 so i value became 6 and when the call back function runs by that time 
+the value of i the var i is 6 in the memmory location it’s 6 
+so thats print 6 every time bcz of this callback function all this copies of this functions all of this 5 functions 
+are reffring this i is refring the same spot of memmory and that is the same varriable this varriable var i which has 
+now run 5 times and its value because of the increment has goen to 6 
+
+
+how to solve this lets put there let over there 
+let is block scope
+every iteration i will be new varriable all time loop running time 
+and each time setTimeout is run thsi callback function has a new copy of i with it it’s own identity of i with it 
+
+why now running correctly bcz let varriable is block scope eac and every this time this loop is called each and every time setTimeout called 
+this function form a closure form a new varriable itself
+that mean the copy of i each iteration is new so that mean if we do i++ here i = 2 is a new copy of varriable which forms a closure  with this function 
+
+setTimeout waht will do 
+setTimeout take the function now the function has a new copy of i bound to it which has value to and send it and saves it 
+and similierly i goes to 3  which is fresh variable its in it its keeps on do it 
+each time refrence diffrent memmory location which is their individual i seperate copy of i which one the scope 
+
+
+some Interview ask they want work using var 
+
+now also help clousure
+
+
+function x(){
+
+    for(var i = 1; i<=5; i++){
+        function close(){
+            setTimeout(function (){
+        console.log(i)
+    },i * 1000)
+        }
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()
+
+here we wrap the setTimeout inside the close function and we some how have to supply the console.log(i) this i every time with in new copy of i how we can do that 
+we can just call the close() function with in i     close(i) and i passing i here too    function close(i) {...}
+if i run it like this so its now work 
+
+why bcz every time you call the close function with this i     close(i) it create a new copy of i     function close(i) {...} for itself for here 
+
+so you confuse lets easy unserstand make i to x 
+
+function x(){
+
+    for(var i = 1; i<=5; i++){
+        function close(x){
+            setTimeout(function (){
+        console.log(x)
+    },x * 1000)
+        }
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()
+
