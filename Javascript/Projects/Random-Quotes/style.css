@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;   /* Needed for full screen */
+    width: 100%;
+}
+
+#mainbox {
+    height: 100vh;
+    width: 100%;
+    display: flex;   
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; 
+    background-image: linear-gradient(rgb(105, 35, 135), rgb(75, 35, 95), rgb(35, 48, 135));
+    /* background: #DAD299; 
+    background: -webkit-linear-gradient(to right, #B0DAB9, #DAD299);
+    background: linear-gradient(to right, #B0DAB9, #DAD299);  */
+}
+
+#boxx {
+    /* background-color: rgba(35, 35, 35, 0.1); */
+    box-shadow: 0 0 18px 3px rgba(0, 0, 0, .3);   /* glass effect */
+    height: 40vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.quotebox {
+    width: 100%;
+    height: 50%;
+}
+
+#quote {
+    font-size: 30px;
+    margin-left: 15px;
+    margin-bottom: 0px;
+}
+
+#authorx {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+    justify-content: right;
+    margin-right: 30px;
+    
+}
+#btn {
+    height: 30px;
+    width: 120px;
+    box-shadow: 0 0 18px 3px rgba(0, 0, 0, .3);
+    background-image: linear-gradient(rgb(39, 30, 43), rgb(22, 21, 22));
+    cursor: pointer;
+    color: white;
+
+}
+#btn:hover {
+    background-image: linear-gradient(rgb(44, 43, 44), rgb(8, 6, 8));
+}
+

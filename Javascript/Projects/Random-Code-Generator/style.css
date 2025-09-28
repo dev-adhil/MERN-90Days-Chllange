@@ -1,0 +1,33 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;   /* Needed for full screen */
+    width: 100%;
+}
+
+#colorBox {
+    height: 100vh;   /* Full screen */
+    width: 100%;
+    display: flex;   /* Enables flexbox */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack text and button */
+}
+
+#colorCode {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#btn {
+    height: 50px;
+    width: 130px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}

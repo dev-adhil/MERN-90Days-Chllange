@@ -1,0 +1,3309 @@
+
+Js
+
+Every thing happen js execution created 
+
+js is syncronus single threaded language 
+
+Even before code start executing memmory  is allocated to this all variables and functions
+
+when ever the js code executing a global execution will created
+
+debuger you can see that CallStack created you can Control that
+
+once the code fully exected the call stack will empty
+
+Call stack 
+--------------
+
+1 - Execution context created 
+2 - Program stack
+3 - Control stack
+4 - Runtime stack
+5 - 
+
+
+* 
+
+when ever the js code executing a global execution will created
+it will two component again 1 - memmory component 2 - code component 
+so the memmory component also known as varriable environment and code component  also known as 
+
+and the first phase memmory will allocate 
+
+here ex : var x = 10 and a() and b()
+ so here memmory allcate x and a() b() variable and functions memmory allocate
+ here variable x memmory allocate time undefined that mean no value 
+ in function line new global execution created
+ 
+ 
+ 
+ 
+ 
+ 
+  memmory componen and code component created
+
+---
+
+## **1. What is Hoisting?**
+
+Hoisting is JavaScript’s way of **moving variable and function declarations to the top of their scope** **before** the code runs.
+
+But… only the **declaration** is moved, **not the value**.
+
+Think of it like this:
+
+> “JavaScript reads your script first, pulls out all the declared variables and functions, and places them at the top, so you can use them earlier than they appear in your code.”
+
+---
+
+## **2. Example with `var`** (function/global scope)
+
+```javascript
+console.log(a); // Output: undefined (not error!)
+var a = 5;
+console.log(a); // Output: 5
+```
+
+**What JS does behind the scenes:**
+
+```javascript
+var a;        // Declaration is moved up
+console.log(a);
+a = 5;        // Assignment stays here
+console.log(a);
+```
+
+---
+
+## **3. Example with `let` and `const`** (block scope)
+
+```javascript
+console.log(b); // ❌ ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+```
+
+* `let` and `const` are **hoisted** too, but they are in a **"temporal dead zone"** until the line where they are actually declared.
+* This means you can’t use them before you write them.
+
+---
+
+## **4. Function Hoisting**
+
+Functions are fully hoisted, meaning you can call them **before** they are declared.
+
+```javascript
+sayHello(); // ✅ Works
+function sayHello() {
+  console.log("Hello Adhil!");
+}
+```
+
+---
+
+## **5. Summary Table**
+
+| Keyword  | Hoisted? | Value Before Initialization |
+| -------- | -------- | --------------------------- |
+| var      | Yes      | `undefined`                 |
+| let      | Yes      | Error (Temporal Dead Zone)  |
+| const    | Yes      | Error (Temporal Dead Zone)  |
+| function | Yes      | Full function available     |
+
+---
+
+💡 **Easy way to remember:**
+
+> Hoisting = "JS picks up your declarations and puts them at the top, but leaves the values where they are."
+
+---
+
+
+
+
+
+
+1)
+
+getname()
+console.log(x)
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+op: 
+
+undefined
+hellow world
+
+2)
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+console.log(getname)
+
+op: 
+
+ƒ getname(){
+
+}
+
+
+3)
+
+console.log(getname)
+
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+
+op: 
+
+ƒ getname(){
+
+}
+
+
+
+4)
+
+getname()
+console.log(x)
+console.log(getname)
+
+var x = 7 
+
+function getname(){
+    console.log("hellow world")
+}
+
+OP : 
+
+hellow world
+undefined
+ƒ getname(){
+    console.log("hellow world")
+}
+
+here we firstly initialising time we calling a var x we getting undefined
+but we calling initialising time a function we getting function
+
+
+Scope functions
+
+Global scope and local scope
+
+ What is “Scope”?
+
+Think of scope as where your variable can be seen or used in your code.
+It’s like having a room in your house — some things are in the whole house (everyone can see them), 
+and some things are inside just one room (only people in that room can see them).
+
+
+Global Scope 🌍
+Definition: A variable is in global scope if you can access it anywhere in your program.
+
+In JavaScript, if you declare a variable outside of any function, it becomes global.
+
+Example:
+
+javascript
+Copy code
+let name = "Adhil"; // Global variable
+
+function sayHello() {
+  console.log("Hello " + name); // Can use 'name' here
+}
+
+sayHello(); // Output: Hello Adhil
+console.log(name); // Output: Adhil
+✅ Global variables can be used anywhere in the code.
+
+3. Local Scope 🏠
+Definition: A variable is in local scope if it is declared inside a function or block (like { }).
+
+Only code inside that function/block can see it.
+
+Example:
+
+javascript
+Copy code
+function greet() {
+  let message = "Hi Adhil"; // Local variable
+  console.log(message); // Works here
+}
+
+greet(); // Output: Hi Adhil
+console.log(message); // ❌ Error: message is not defined
+❌ You cannot use message outside the function because it’s local.
+
+4. Block Scope (Extra for You)
+In modern JavaScript:
+
+let and const have block scope → only exist inside { }
+
+var is function-scoped → ignores { } unless it’s inside a function.
+
+Example:
+
+javascript
+Copy code
+if (true) {
+  let a = 10;
+  var b = 20;
+}
+console.log(b); // ✅ 20
+console.log(a); // ❌ Error: a is not defined
+💡 Summary Table
+
+Scope Type	Where You Can Use It
+Global	Anywhere in the file
+Local	Only inside the function/block where declared
+Block	Only inside { } if using let/const
+
+
+Now lets check notdefined and undefined
+
+eg:
+
+getname()
+console.log(x)
+console.log(getname)
+
+
+function getname(){
+    console.log("hellow world")
+}
+
+
+here x is we not defined so thats mean notdefined
+
+now js is throw a Error 
+
+Uncaught ReferenceError: x is not defined
+
+this mean x is not present in the memmory 
+and that mean x is not initialised in the program
+
+
+
+Now lets check another intresting thing
+
+getname function lets change arrow function
+
+getname()
+console.log(x)
+console.log(getname)
+
+var x = 7 
+
+var getname = () => {
+    console.log("hellow world")
+}
+
+
+op:
+
+Uncaught ReferenceError: getname is not defined
+
+
+its saying get name is not a function
+
+in this case getname is arrow function so arrow function behave just a variable
+now get name doesnot like behave like a function its behave like a variable 
+so it will do is 
+
+even before we exicute the whole code so now in the memmory allocation phase of the execution context  
+it will allcate just like it allocates undefined to x  it also allocate undefined to getname
+
+eg:
+
+getname()
+console.log(x)
+console.log(getname)
+
+var x = 7 
+
+function getname2() {
+
+}
+
+var getname = () => {
+    console.log("hellow world")
+}
+
+now you can see deepcheck 
+
+there memmory allocated getname2 but arrow function getname is a variable like memmory allocated
+
+
+Now lets check another intresting thing
+
+var getname2 = function() {
+
+}
+
+this also behave like a varriable
+
+
+op:
+
+getname:undefined
+
+undefined mean its a variable memmory allocated
+
+
+Imp
+
+Only the proper way of declaration 
+it will copy the whole code 
+
+scope you can see getname2 is whole function
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+How function works in js & varriable
+
+
+eg:
+
+var x = 1 
+a();
+b();
+console.log(x);
+
+
+function a() {
+    var x = 10;
+    console.log(x)
+}
+
+function b() {
+    var x = 100;
+    console.log(x)
+}  
+
+
+i gona tell how function invok behind the scene 
+first lets see the output will be
+
+OP:
+    10
+    15
+    100
+
+
+how this get
+
+this behind 
+
+here ex : var x = 10 and a(){...} and b(){....}
+ so here memmory allcate x and a() b() variable and functions memmory allocate
+ here variable x memmory allocate time undefined that mean no value 
+ in function line new global execution created
+ a() b() code line time a call stack create a() function have seperate memmory create and store there after this line any return then pass global execution
+ a() function op pass main global there console show output
+ and check global exucation value based call stack function value pass
+
+
+
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Windows And this Keyword !!!!!!
+
+
+ Do you know the shortest js file hahahahahah its js empty file
+
+ if our page is then also js doing lot of things doing behind the scene 
+
+ lets exicute the program what happened a global execution will created and also create a memmory space 
+ and js create a seperate thing its Window 
+ if you go console just write Window you can see another thing
+
+ this is big object inside lot of object this varriables and function are created js engine and in to the global space 
+ and also js engine create this Keyword
+ at the global level this point the Window object
+
+ what is Window
+
+ Window is global object which is created along with the global  execution
+
+ when ever js code executr a global object is created and a global execution will created and along with the global execution context a this Keyword is created
+
+ js runing evry browser there have js engine chrome have v8 enging 
+
+ the engine duty is create Window object
+
+ in console type this === Window op is true you can see that
+
+in js empty file we run execute we can see debugging time execution time a global memmory is created this all js engine do it automatically 
+
+what is global space ?
+
+its if we write any code or write variable or function inside js file without inside of any function its called global space
+if i create any variable or functions inside any function its not global space  
+
+ eg:
+    var x = 1 
+        function a() {
+            var x = 10;
+        }
+
+        here var x = 1 is global space 
+        var x = 10 its not global space bcz its inside a function
+
+so anything not inside any function then its global space
+
+this variable and function get attach to the global object what was that global object its Window 
+lets check console.log
+we can see this all inside window we created variable and function inside window global object
+
+if we create any varriable or functions in global space its attached to window
+84
+
+How we can access this just console window.x you can see the value
+
+console.log(windows.x)
+
+and this also point windows 
+so 
+console.log(this.x)
+
+we can get same output
+
+window.x or this.a all pointing same global space
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Undefined vs not defained 
+
+eg:
+
+console.log(a)
+
+    var a = 1 
+
+console.log(a)
+
+here a is writed so js allocated memmory so allocated  memmory if we exected 1 line op: undefined
+but we a is not write then op: not defained 
+
+notdefined mean it has not allocated memmory 
+undefined not mean empty its a special keayword it take its own memmory but you can asume a place holder which is kept b until the varriable asigned some other value
+till that point it will store the place holder known as undefined
+
+if i not asigned any value 
+
+    var a;
+
+console.log(a)
+
+if execute the whole program show undefined and it show some thing in the js we can also do some thing like this
+
+    var a;
+
+
+if (a === undefined) {
+    console.log("a is undefined")
+}
+else {
+    console.log("a is not undefined")
+}
+
+op : a is undefined
+
+    var a = 10
+
+
+if (a === undefined) {
+    console.log("a is undefined")
+}
+else {
+    console.log("a is not undefined")
+}
+
+op: a is not undefined
+
+so javascript is loosly type language
+
+loosly type mean it doesnot attaches its variables to any specific data type 
+so supoose i created a puting a string in it so later on the program 
+then i can put number on it and also put boolean in it its like js like very flexible in this case  its loosly type\
+eg:
+var a;
+console.log(a)
+var a = 10
+console.log(a)
+var a = "hello javascript"
+
+op:
+undefined
+10
+hello javascript
+
+this is called loosly type language loosly type language aslo know as weekly type language
+
+
+if strict type like c c++ if you asign a varriable that if its a strict in a  it only allow string not asign numbers or boolean anything else 
+
+
+Great question 👍 Let’s break this down step by step in a **beginner-friendly way** with examples.
+
+---
+
+## 🔹 1. **`undefined` in JavaScript**
+
+* **Meaning**: A variable is **declared but not assigned a value yet**.
+* JavaScript automatically gives it the value `undefined`.
+
+👉 Example:
+
+```js
+let x; // declared, but no value
+console.log(x); // undefined
+```
+
+Here:
+
+* `x` exists in memory.
+* But since we didn’t assign a value, JavaScript gives it the special value **undefined**.
+
+Another example:
+
+```js
+function greet(name) {
+  console.log(name); 
+}
+
+greet(); // calling without argument
+```
+
+Output:
+
+```
+undefined
+```
+
+Because we didn’t pass any value for `name`.
+
+---
+
+## 🔹 2. **`not defined` in JavaScript**
+
+* **Meaning**: A variable is **never declared** at all.
+* If you try to use it, JavaScript will throw a **ReferenceError**.
+
+👉 Example:
+
+```js
+console.log(y); 
+```
+
+Output:
+
+```
+ReferenceError: y is not defined
+```
+
+Here:
+
+* `y` doesn’t exist in memory at all.
+* JavaScript says: *“I don’t know what `y` is!”*
+
+---
+
+## ✅ Quick Comparison
+
+| Case                                  | Example                  | Output                             |
+| ------------------------------------- | ------------------------ | ---------------------------------- |
+| **Undefined** (declared but no value) | `let a; console.log(a);` | `undefined`                        |
+| **Not defined** (never declared)      | `console.log(b);`        | `ReferenceError: b is not defined` |
+
+---
+
+## 🔎 Key Rule
+
+* **`undefined` → Exists, but empty.**
+* **`not defined` → Doesn’t exist at all.**
+
+---
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+The scope chain , scope and Lexical environment
+
+eg :
+
+function a(){
+    console.log(b)
+}
+
+var b = 10;
+a()
+
+op:
+
+10
+
+eg2:
+
+function a(){
+    c()
+    function c(){
+        console.log(b)
+    }
+}
+
+var b = 10;
+a()
+
+op:
+
+10
+
+This mean even inside function which is inside another function which is inside global scope  i can access b
+and whiseversa
+
+supoose if had b inside function can i still access c 
+
+function a(){
+    c()
+    var b = 10;
+    function c(){
+        console.log(b)
+    }
+}
+
+a()
+op:
+10
+
+ya i can access
+
+but can i access b outside this function if run this showing b is not defined 
+eg :
+function a(){
+    c()
+    var b = 10;
+    function c(){
+    }
+}
+console.log(b)
+a()
+
+op:
+script.js:7 Uncaught ReferenceError: b is not defined
+
+this easy understan scope
+
+so scope mean where you can access the specific variable or function inner code thats scope
+see there are two aspect 
+1 - whats is the scope of the variable b that mean variable can i access this varriable b thats scope
+2- is the b inside the scope function c that mean can i access this b inside c there two ways look at it 
+
+scope is directly involved lexical environment
+
+whats is lexical environment !!!!!!!!!!!!!!
+
+code behind working 
+
+function a(){
+    c()
+    var b = 10;
+    function c(){
+    }
+}
+console.log(b)
+a()
+
+
+when we run the program a global execution created its put in to the call stack and what happend a global execution created 
+so what will happen program it will try to values to the global varriables and functions
+so try to asign value a over here there is global space lets try to assign the value
+assign a and pointed to assigned function
+then what will hapen it invoke the function when we invoke the function execution context created 
+lets create execution context a also
+it again also memmory and code now this a function reserve a memmory space for b  and function c 
+so b and c reserve memmory here initially b is set to undefined and c is reserve to a set function 
+and once start executing code now b become 10 and go to next line this is again a function invokation what happen function invokation
+again a execution context created and again push call stack and now this is execution of the c() and again a memmory setup
+now i am lexical environment just pay attention when ever a execution context created a lexical environment also created 
+if you execution context created you also get refrence to the lexical environment of the parrent
+so lexical environment c function is function a 
+and the a also lexical environment its global
+global also lexical environment its point to the null
+a lexical environment is a local memmory along with the lexical environment of its parrent !!!!!!!!!!!!!!
+
+and also
+
+whats is lexical ?!!!!!!!!!!!!!!!!!!!!!11
+
+lexical is term mean hirarchy or in a sequence 
+here top code c function insisde a lexical hirarchy the c function lexically inside a function
+that mean lexical in order in hirarchy
+
+in term wher in specific code present phisically inside the code here the code c function phisically inside function a
+so that mean c function lexically inside a function
+
+if you execution context created you also get refrence to the lexical environment of the parrent
+so lexical environment c function is function a 
+and the a also lexical environment its global
+global also lexical environment its point to the null
+lexical environment look like memmory
+and a is lexically inside global scope
+
+this know as lexical !!!!!!!!!!!
+
+The lexical environmentmean the lexical environment is created when ever the execution context is created and 
+lexical environment is the local memmory + reference to the lexical environment of parrent
+
+
+what is scope chain !!!!!!!!!!!
+
+the reference checking based of lexical scope 
+if js engine doesnot anything in the local memmory its goes next level of the scope chain if doesnot find anythis this memmory it goes next level of the scope
+chain if it doesnot find it goes to next level of the block chain this whole chain of lexical environment is known as the scope chain
+
+
+the whole chain of lexical environment is known as the scope chain and it defines wheather a varriable of a function present inside the scope or not 
+if the scope chain exhausted and variable is not found that means its not inside the scope chain
+
+What is lexical parrent?!!!!
+
+where actualy that function fix inside the code so c function lexically inside function a so a is parrent a and function a lexical parrent global so parrent global
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+let & const in js 🔥 Temporal Dead Zone
+
+What is temporal zone?
+Are let & const declarations hoisted in javascript?
+whats the diffrence between SyntaxError and ReferenceError and TypeError
+
+
+
+let & const declarations are Hoisted?
+
+this let & const are not hoisted this is incorect answer 
+you can tell this this are in the temporal dedzone for the time being
+
+eg:
+
+console.log(b)
+let a = 10;
+var b = 100;
+
+op :
+undefined
+
+but we console we get error 
+
+console.log(a)
+let a = 10;
+var b = 100;
+
+op:
+
+script.js:2 Uncaught ReferenceError: Cannot access 'a' before initialization
+
+this error saying you can only access this a after you have assigned initialise some value to the variable a 
+
+let a = 10;
+console.log(a)
+
+now we can access it 
+
+how to know this varriable hoisted or not 
+
+temporal dedzone is time since let variable was hoisted and till its initialise some value the time between that is know as Temporal DeadZone
+
+when ever you access variable inside temporal deadzone it’s gives you refrence error !!!!
+and they can only to be access the one some value initialise to them 
+
+console.log(a)
+let a = 10;
+var b = 100;
+if i try to initialise them 
+
+in line number 3 before anything line  number 3 was the temporal dedzone for a this is how it is 
+this is what is known as temporal deadzone !!!!
+
+another thing
+
+console.log(x)
+let a = 10;
+var b = 100;
+
+here we x not defained
+
+op: 
+script.js:2 Uncaught ReferenceError: x is not defined
+    
+    so this mean when javascript engine tries to find out the value of x in the current scope it was not able to find it 
+    x was not there so there was no reference and hence its says x is not defined bcz no were defained
+
+console.log(b)
+
+if i try to access b here 
+op give undefined 
+bcz memmory was allocated to b but not yet initialised 
+so ot gives special place holder its undefined
+
+console.log(a)
+in case we try access a here 
+now op error again 
+but this time its definet message so its clearly say that you cannot access a before initialization and a is an temporal dead zone for the time being
+
+and you can access any where after initialization
+
+let a = 10;
+console.log(x)
+
+now you can access
+
+another thing
+
+console.log(x)
+let a = 10;
+var b = 100;
+
+in console 
+you can write 
+window.b 
+op : 10
+
+you can get value 
+but 
+window.a 
+search time you can get undefined
+
+let and const store seperate reserve place
+
+if you not defined x 
+you console search
+
+window.x 
+you can get same undefined
+
+let and const its not present on window object 
+when i say window thats global object
+
+so you can understand let is more strict than var 
+
+and more strict one no more declaration its 
+
+eg:
+console.log("aaaaadad")
+let a = 10;
+let a = 100;
+
+op:
+
+Uncaught SyntaxError: Identifier 'a' has already been declared (at script.js:3:5)
+
+this is SyntaxError no code will run 
+
+if any SyntaxError JavaScript just throw SyntaxError and it doesnot even console.log doesnot even reaches single line of code it just upfriended  its not possible
+completely SyntaxError show
+same in the case of var  too 
+a has been already declared you cannot use the same name in the same scope again 
+
+it possible in var not possible in let 
+console.log("aaaaadad")
+var a = 10;
+var a = 100;
+
+this time consolelog work
+
+in case const ?
+
+in const very much similier in to let 
+its even more strict let 
+
+console.log("aaaaadad")
+let a = 10;
+const b = 100;
+
+you can see same like let stored in seperate memmory space and you cannot access it it also goes to temporal deadzone but when i say more strict
+
+let a ;
+a = 10
+
+let you can some where latter you can put value in the program any where 
+this is totally fine 
+
+in this case const is verry strict 
+
+you cannot do something like this in case of const 
+you can assign value in to latter on  the program  you cant do this you directly get syntax error 
+
+const  a ;
+a = 10
+
+op: Uncaught SyntaxError: Missing initializer in const declaration (at script.js:1:8)
+
+SyntaxError mean code not run code rejected upfront its like invalid javascript code 
+
+look error saying Missing initializer in const declaration
+
+so const declare here only
+const  a = 100 ;
+
+in case 
+
+const b ;
+b = 10
+
+this case 
+
+const b it expects that you will initialised in the same line that mean you definitly you have to do  something like this
+const b = 100;
+and you canot do it latter 
+
+if we change value like this 
+
+const b = 100;
+
+b = 10
+
+op:
+script.js:2 Uncaught TypeError: Assignment to constant variable.
+
+now showing TypeError 
+
+TypeError saying Assignment to constant variable so you are trying to assign any other value to a constant varriable 
+why its a TypeError bcz this varriable b is a type const
+its a constant
+its initialise declare together and you cannot assign latter on  this is TypeError
+
+what was  SyntaxError do var b i cannot initialise it it says syntax error
+
+const b ;
+
+not initialise value its syntax error bcz here we Missing syntax
+
+and another syntax error 
+
+let a = 20
+let a = 100
+
+Uncaught SyntaxError: Identifier 'a' has already been declared (at script.js:2:5)
+here SyntaxError bcz no duplication 
+that means some syntax problem code 
+
+ReferenceError means when  javascript engine tries to find out a specific varriable inside the memmory space and you cannot access it 
+the it gives refrence error 
+
+console.log(a)
+let a = 10;
+
+op:script.js:1 Uncaught ReferenceError: Cannot access 'a' before initialization
+
+why here error bcz a is the temporal deadzone
+
+and one more ReferenceError 
+random variable console
+
+console.log(x)
+op:
+script.js:1 Uncaught ReferenceError: x is not defined
+    at script.js:1:13
+
+now also get ReferenceError bcz we not declared 
+why was never placed memmory you cannot access x 
+bcz its not in there in the local memmory
+
+
+now lets understood SyntaxError , TypeError , ReferenceError
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11
+
+Block Scope and Shadowing
+
+{
+
+}
+this is block what is the use of the block 
+
+Block is also known as compound statement  
+
+{
+    // Compound Statement
+    var a = 10;
+    console.log(a);
+}
+
+ok what is this block doing 
+
+its compaining multiple javascript statement in to a group
+
+why we need to the group this statement
+we need to group this statement together so that we can use multiple statement in a place where javascript expects only one statement
+
+eg:
+
+{
+    // Compound Statement
+    var a = 10;
+    console.log(a);
+}
+
+if(true)
+
+op:
+script.js:1 Uncaught ReferenceError: x is not defined
+    at script.js:1:13
+
+    this showing error 
+    we can write true also then perfectly write one statement
+
+    {
+    // Compound Statement
+    var a = 10;
+    console.log(a);
+    }
+
+    if(true) true
+
+    op: 
+    10
+
+    now not error
+
+but we write multiple statement
+
+you can use block like this
+
+    if(true)
+    {
+    // Compound Statement
+    var a = 10;
+    console.log(a);
+    }
+
+
+this group of multiple statements can be use in the place where in the javascript expects as a single statement
+so in case it expects as single statement here after this that is the correct syntax of this but we want multiple statement so we use something like this 
+    {
+    // Compound Statement
+    var a = 10;
+    console.log(a);
+    }
+this is the block wraping up multiple statements its grouping together multiple statements so that we use it in place where javascript expects one statements
+if we multiple statements we need to use block which compine multiple statement
+
+
+now lets see 
+whats block scope? !!!!!!
+
+what all variables and functions we can access inside this block that is known as block scope
+
+what is the scope of block scope but all variable 
+
+{
+    // Compound Statement
+    var a = 10;
+    let b = 20;
+    const c = 30;
+}
+
+block:
+    b:undefined
+    c:undefined
+
+global:
+    a:undefined
+
+console debuger check you can see let and const seperate block scope memmory that meaan stored in seperate memmory space which is reserved for the block 
+and js finish execute right this let and const no longer accessable 
+you cannot access let and const outside this block that is known as let and const block scope
+where as you can access var can access outside it is in the global scope
+
+{
+    var a = 10;
+    let b = 20;
+    const c = 30;
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+console.log(a)
+console.log(b)
+console.log(c)
+
+lets see op:
+
+10
+script.js:6 20
+script.js:7 30
+script.js:10 10
+script.js:11 Uncaught ReferenceError: b is not defined
+    at script.js:11:17
+
+now you can see value of a b c from this line 5 6 7 op 10 20 30 
+and also print a also from line number 9 but cannot access b stopped the program show an errorand says ReferenceError : b is not defined
+bcz b is not global scope 
+
+this is how to work scope
+
+
+now we learn
+
+Shadowing in javascript?
+
+if same name varriable outside the block 
+
+var a = 100
+{
+    var a = 10;
+    let b = 20;
+    const c = 30;
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+
+this varriable shadows the varriable 
+if i try to access a inside the block inside var a = 10; this varriable shadows varriable
+
+
+let b = 100;
+{
+    var a = 10;
+    let b = 20;
+    const c = 30;
+    console.log(a)
+    console.log(b)
+    console.log(c)
+}
+
+console.log(b)
+
+scope in console
+block:
+    b:20
+    c:30
+
+script:
+    b:100
+
+global:
+    a:10
+
+you can see all are coming diffrent memmory space
+
+op:
+
+10
+script.js:7 20
+script.js:8 30
+script.js:11 100
+
+now shadowing another concept in function
+
+in function scope shadowing behaviour similier way 
+
+var c = 100;
+
+function x(){
+    var c = 30;
+    console.log(window.c)
+    window.c = 20;
+}
+x()
+console.log(c)
+
+op:
+100
+script.js:9 20 
+this is shadowing
+
+there is something illegal shadowing
+
+let a = 20;
+
+{
+    var a = 30
+}
+
+op:
+script.js:4 Uncaught SyntaxError: Identifier 'a' has already been declared (at script.js:4:9)
+
+this is calling illegal shadowing
+
+
+let a = 20;
+
+{
+    let a = 30
+}
+
+now you can shadowing you use let using then use let  but you cannot shadow let using var  that illegal shadowing
+
+but viceversa you can use 
+
+var a = 20;
+
+{
+    let a = 30
+}
+
+you can use this this is valid 
+why this valid 
+
+if a variable shadowing something it should not crossing the boundry of it scope in a particular scope  a let cannot be redeclared 
+so var should not cross this limit or the boundry  over here and when i said not crossing boundries so what are the boundry of var
+remember a var is a functional scope 
+
+let a = 20;
+
+function x(){
+    let a = 30
+}
+
+now lets put function now not error var have some boundries it is not interfear in with this a now this is fine this is not illegal shadowing 
+in case const it behave same 
+
+const a = 20;
+
+function x(){
+    const a = 30
+}
+
+its also memmory space and its totally fine 
+block scope also follow lexical scope 
+
+const a = 20;
+
+{
+    const a = 100
+    {
+        const a = 200
+        console.log(a)
+    }
+}
+
+op:
+200
+
+const a = 20;
+
+{
+    const a = 100
+    {
+        const a = 200
+    }
+    console.log(a)
+}
+
+op:
+100
+
+the nearest block value getting op
+
+the scope in console
+block:
+    a:200
+
+block:
+    a:100
+
+script:
+    a:20
+
+
+this follow lexical chain pattern 
+```````````````````
+if 
+
+const a = 20;
+
+{
+    const a = 100
+    {
+    console.log(a)
+    }
+}
+
+now op: 100 
+
+nearest value
+
+in we write console outside
+
+const a = 20;
+
+{
+    const a = 100
+    {
+        const a = 200
+    }
+}
+console.log(a)
+
+op: 20
+
+the lexical scope work same way inside the block also
+
+
+lets say avout arrow function !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+let me tell you that 
+
+wheather declare a function keayword or arrow function we feel that those might have diffrent scope but they are exactly same these all this scope rules 
+which work on function are exactly same in the arrow function too so not need worry about learning diffrently scope for arrow functions than normal function
+they are absolutly same 
+
+
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Closures
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment).
+In other words, a closure gives a function access to its outer scope. In JavaScript, closures are created every time a function is created, 
+at function creation time.
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    y()
+}
+x()
+
+this is clousure 
+
+clousure basically mean that a function bind together with it lexical environment
+
+clousure is a function bind together with lexical environment or clousure along with the lexical scope together together bundle is known as clousure
+its forms a clousure function alongs to the lexical scope
+
+debugging console
+
+clousure x:
+    a:7
+
+
+
+You know functions are heart of javascript functions are very beautiful in javascript 
+what we doing doing here function grab it and asign function to a varriable
+
+function x (){
+    var a = function y(){
+        console.log(a);
+    }
+    y()
+    
+}
+x()
+
+
+and you can pass to a function
+
+function x (){
+    var a = 7
+
+   y() 
+}
+x(function y(){
+        console.log(a);
+    })
+
+most of programing languages not allow this 
+
+AND similierly you can pass even return this function from function
+yes you return this function out of function
+how could you put just return the function
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    return y;
+}
+x()
+
+here return the function outside
+whats the mean when you return y 
+
+so y litraly is like the function itself the whole function code y(){...} when you return it 
+what it return actually what will happen
+once you invoke the x() it returns y and it returns to the y place where the function was invoked 
+so thats mean when you exected this 
+y will return over here x() grab to this in to a varriable and see what it is 
+
+var z = x()    
+
+ok lets see what will be the return value of function call will be 
+lets just kind of console.log(z)
+
+yes the out put giving the function y(){...}
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    return y;
+}
+var z = x()
+console.log(x)
+
+//...........
+z();
+
+we calling z()
+if they  return then also they still maintain lexical scope they remember where they where actually present               !!!!!!!!!!!!!!
+so they x no longer exists but still y() function remember its lexical scope where it came from 
+
+function are beautiful when they return from another function this still maintains their lexical scope
+they remember where they actually present
+so there is no x() no were exist nothing is there but still this y() function remembers its lexical scope where it came from 
+so it came from here it remember when there was a and it has the binding strong there 
+
+in simple way
+
+it returns y not just function code was returned but closure code were return the closure includes the first function along with lexical scope 
+that was return its not a function but whole clousure  function along with lexical scope that was return and it was put inside z()
+when execute z some  where in your program it still remember the a still remember the refrence to the a and try to find out value of a which is 7 and it kind of present
+thats is clousure
+
+
+lets check some confusing example
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    return y;
+}
+var z = x()
+console.log(x)
+
+op:
+7
+
+function x (){
+    var a = 7
+    function y(){
+        console.log(a);
+    }
+    a = 100
+    return y;
+}
+var z = x()
+console.log(x)
+
+op:
+100
+
+
+lets whrite whole code another function scope chain
+
+function z() {
+    var b = 200
+  function x() {
+    var a = 7;
+    function y() {
+      console.log(a,b);
+    }
+    y()
+  }
+  x()
+}
+z()
+
+debugging console
+
+clousure (x):
+    a:7
+closure (z):
+    b:200
+
+!!!!!!!!!!!!!!!!!!
+
+USES OF CLOSURES :
+    - Module Design Pattern
+    - Currying
+    - Functions like once
+    - memoize
+    - Maintain state in async world
+    - setTimeout
+    - Iterators
+    - and many more...
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+setTimeout
+-----------
+
+function x(){
+    var i =100
+    setTimeout(function (){
+        console.log(i)
+    },3000)
+    console.log("Welcome mern challenge")
+}
+x()
+
+op:
+Welcome mern challenge
+100
+
+here print Welcome mern challenge then wait timing and print i value
+
+many people think javascript wait for here nooo 
+javascript doesnot wait anyone 
+setTimeout also not wait and javascript also not wait anyone
+
+how setTimeout work 
+
+why printing like this bcz let me tell one this first setTimeout inside function closure so this function remembers
+the reference to i and it is like forms a clousure so where ever function goes it takes the reference of i along with it
+that was clousure is right and what about setTimeout do it is take this call back function and stores it in to some place and 
+attached the timmer to it 
+
+once more 
+
+it takes the call back function and it attaches the timmer on 3000 mili second to it and it stores some where and it javascript proceed
+it doesnot wait for anything it just goes to the next line and print Welcome mern challenge thats how javascript work 
+and once timer expire  once the 3000 mili second done that timer expire it takes that function put it agains to the call stack and runs it
+thats  how setTimeout work 
+
+lets do some diffrent type thing using setTimeout
+
+function x(){
+
+    for(var i = 1; i<=5; i++){
+        setTimeout(function (){
+        console.log(i)
+    },i * 1000)
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()
+
+op:
+Welcome mern challenge
+6
+6
+6
+6
+6
+
+
+why printing 6 why bcz of closure
+
+what will happen when the setTimeout takes this functionnad store it some where and attaches the timer so that function remember the reference to i
+so let me thinks clear i have told you in the clousure video also that it remember the refrence to i not the value of i it refrence to i 
+when the loop run first time like kind of makes a copy of function attaches timer and also remember the reference of i similierly this 
+5 copy of Functions all of them are pointing to same refrence of i bcz the environment of all this functions are same all of the copy of set timeout 
+callback function the reffrence to the i it referce to the same memmory space right 
+2nd thing javascript wait for anything it run the loop again and again it will just quickly push that or store that function setTimeout store that function
+all that 5 function and javascript move on it doesnot wait for setTimeout expire so it will print Welcome mern challenge and when the timer expire 
+it is too late and the value of i bcz the loop constantly running 1 2 3 4 5 6 so i value became 6 and when the call back function runs by that time 
+the value of i the var i is 6 in the memmory location it’s 6 
+so thats print 6 every time bcz of this callback function all this copies of this functions all of this 5 functions 
+are reffring this i is refring the same spot of memmory and that is the same varriable this varriable var i which has 
+now run 5 times and its value because of the increment has goen to 6 
+
+
+how to solve this lets put there let over there 
+let is block scope
+every iteration i will be new varriable all time loop running time 
+and each time setTimeout is run thsi callback function has a new copy of i with it it’s own identity of i with it 
+
+why now running correctly bcz let varriable is block scope eac and every this time this loop is called each and every time setTimeout called 
+this function form a closure form a new varriable itself
+that mean the copy of i each iteration is new so that mean if we do i++ here i = 2 is a new copy of varriable which forms a closure  with this function 
+
+setTimeout waht will do 
+setTimeout take the function now the function has a new copy of i bound to it which has value to and send it and saves it 
+and similierly i goes to 3  which is fresh variable its in it its keeps on do it 
+each time refrence diffrent memmory location which is their individual i seperate copy of i which one the scope 
+
+
+some Interview ask they want work using var 
+
+now also help clousure
+
+
+function x(){
+
+    for(var i = 1; i<=5; i++){
+        function close(){
+            setTimeout(function (){
+        console.log(i)
+    },i * 1000)
+        }
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()
+
+here we wrap the setTimeout inside the close function and we some how have to supply the console.log(i) this i every time with in new copy of i how we can do that 
+we can just call the close() function with in i     close(i) and i passing i here too    function close(i) {...}
+if i run it like this so its now work 
+
+why bcz every time you call the close function with this i     close(i) it create a new copy of i     function close(i) {...} for itself for here 
+
+so you confuse lets easy unserstand make i to x 
+
+function x(){
+
+    for(var i = 1; i<=5; i++){
+        function close(x){
+            setTimeout(function (){
+        console.log(x)
+    },x * 1000)
+        }
+    }
+
+    console.log("Welcome mern challenge")
+}
+x()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// string slicing = creating a  substring 
+                    from  a portion of another srtring
+
+const fullName = "javascript code"
+
+let firstName = fullName.slice(0, 3)
+let lastName= fullName.slice(4, 8)
+
+let firstChar = fullName.slice(0,1)
+let lastChar = fullName.slice(-1)
+
+console.log(lastChar)
+
+const fullName = "javascript code"
+
+
+let firstName = fullName.slice(0, fullName.indexOf(""))
+let lastName = fullName.slice(fullName.indexOf("") + 1)
+
+console.log(firstName)
+console.log(lastName)
+
+
+    const fullName = "javascript@gmail.com"
+
+
+    let firstName = fullName.slice(0, fullName.indexOf("@"))
+    let lastName = fullName.slice(fullName.indexOf("@") + 1)
+
+    console.log(firstName)
+    console.log(lastName)
+
+
+
+
+
+
+
+/*
+
+method chainig = calling one method one after another
+                 in one continue line of code.
+*/
+
+let username = window.prompt("enter you user name : ");
+
+// -------No method chaining -----------
+
+username = username.trim()
+let letter = username.charAt(0)
+letter = letter.toUpperCase()
+
+
+
+let extraChar = username.slice(1)
+extraChar = extraChar.toLowerCase()
+username = letter + extraChar;
+
+console.log(username);
+
+
+// --------Method Chaining --------------
+
+username = username.trim().charAt(0).toUpperCase() + username.trim().slice(1).toLowerCase()
+
+console.log(username);
+
+
+one method one another method continuous code is chainig -----------------
+
+
+
+
+
+
+
+// logical operator = used to compain or manipulate boolean values 
+//                    (true or false)
+
+//                     AND = && 
+//                     OR = ||
+//                     NOT = !
+
+const isSunny = true;
+
+if(!isSunny){
+    console.log("it is cloudy");
+}
+else{
+    console.log("it is sunny");
+}
+
+
+
+
+
+
+
+
+//  = assign operator 
+
+//  == comparison operator (compare if values are equal)
+
+//  === strict operator (compare if values & data type are equal)
+
+//  != inequality operator 
+
+//  !== strict inequality operator 
+
+const PI = 3.14;
+
+if(PI = 3.14){
+    console.log("That is PI");
+}
+else{
+    console.log("That is Not PI");
+}
+
+// if strict comparison we checking if(PI = 3.14) its true bcz its number but if we checking if(PI = "3.14") now wrong
+// bcz "" this put this " "mean string datatype also checking 
+
+
+
+
+
+
+
+// while loop = repeat some code WHILE some condition is true 
+
+let userName = ""
+
+while(userName === "") {
+    userName = window.prompt(`enter your name `)
+}
+
+console.log(`hello ${userName}`);
+
+// here checking user name value if we not enter name it repeatly ask you ncz value null
+
+let userName = ""
+
+while(userName === "" || userName === null) {
+    userName = window.prompt(`enter your name `)
+}
+
+console.log(`hello ${userName}`);
+
+
+
+// another one in while lop its do while loop atleast one time check the do {}
+
+let userName ;
+
+do {
+    userName = window.prompt(`enter your name`)
+}while (userName === "" || userName === null)
+
+console.log(`helo ${userName}`);
+
+// if we do let userName; now underfined so not enter while loop but if we do do while it altleast enter do
+// this is the diffrent case
+
+
+
+let loggedIn = "";
+let userName;
+let password;
+
+while(!loggedIn){
+    userName = window.prompt(`Enter your userName`)
+    password = window.prompt(`Enter your Password`)
+
+    if(userName === "myUserName" && password === "myPassword"){
+        loggedIn = true;
+        console.log("You are logged in");
+    }else {
+        console.log("invalid crediential ! please try again");
+    }
+}
+
+
+
+
+// for loop = repeat some code a LIMITED amount of times
+
+for(let i = 10; i > 0; i+=1){
+    console.log(i);
+}
+
+console.log("Happy javascript");
+
+
+
+for(let i = 10; i <= 20; i++){
+    if(i == 13){
+        break;
+    }
+    else{
+        console.log(i);
+    }
+}
+
+console.log("Happy javascript");
+
+
+
+
+
+
+
+
+// function = A section of reusable code.
+//            Declare code once, use it whenever you want.
+//            Call the function to execute that code. 
+
+function happybirthday(name,age){
+    console.log(`happy birthday ${name}`);
+    console.log(`happy birthday ${age}`);
+}
+
+happybirthday("adhil",19)
+
+// here parameter
+function add(x , y){
+    let result = x + y;
+    return result;
+}
+
+console.log(add(3,4));
+// or 
+
+let answer = add(2,7)
+//here argument
+
+
+function isValidEmail(email){
+    if(email.include("@")){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+isValidEmail("abin@gmail.com")
+
+
+
+
+
+
+
+
+
+//  array = a variable like structure that can hold 
+//          more than 1 value 
+
+let fruits = ["apple","banana","mango"]
+
+// fruits.push("coconut")
+// fruits.pop();
+// fruits.unshift("mango")
+// fruits.shift();
+
+let numOfFruits = fruits.length;
+let index = fruits.indexOf("apple")
+
+for(let i = 1 ; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+
+
+for(let i = fruits.length ; i >= 0 ; i--) {
+    console.log(fruits[i]);
+}
+
+for(let fruit of fruits){
+    console.log(fruit);
+}
+//or
+for(let mat of fruits){
+    console.log(mat);
+}
+// this is same as for loop
+
+fruits.sort().reverse()
+// its reverse array
+
+console.log(numOfFruits);   
+
+
+
+
+
+// spread operator = ... allows an iterable such as an 
+//                   array or string to be expanded 
+//                   in to seperate elements 
+//                   (unpacks the elements)
+
+// let numbers = [1, 2, 3, 4, 5];
+// let maximum = Math.max(numbers);
+// if we do this show error NaN we need use spread operator
+
+let numbers = [1, 2, 3, 4, 5];
+let maximum = Math.max(...numbers);
+let min = Math.min(...numbers)
+
+// lets do this string
+
+// let username = "mern challenge"
+// let letters = [...username]
+// now we get sperate letters now we need join single
+
+let username = "mern challenge"
+let letters = [...username].join()
+// or 
+// let letters = [...username].join("-")
+// join - add
+// now this one string 
+
+
+// this spead operator use compain arrays
+
+let fruits = ["apple","banana","mango"]
+let vegitable = ["carrot","potato", "tomato"]
+
+// let food = [...fruits, ...vegitable]
+console.log(food);
+
+// we can add extra tooo
+let food = [...fruits, ...vegitable, "banana","cocnut"]
+
+
+
+
+console.log(numbers);
+
+
+
+
+
+
+
+
+
+
+// rest parameter = (...rest) allow a function work with a varriable 
+//                  Number of argument by bunding them in to an array 
+
+//                  spread = expands an array into seperate elements
+//                  rest = bundle seperate elements in to an array 
+
+function openFridge(...foods) {
+    console.log(...foods);
+}
+function getFood(...foods) {
+    return foods
+}
+
+const food1 = "banana"
+const food2 = "apple"
+const food3 = "sushi"
+const food4 = "mango"
+const food5 = "pizza"
+
+// openFridge(food1, food2, food3, food4, food5);
+
+const foods = getFood(food1, food2, food3, food4, food5)
+
+console.log(foods);
+
+
+
+function sum(...numbers){
+    let result = 0;
+    for(let number of numbers){
+        result += number;
+    }
+    return result ;
+}
+
+
+function getAverage(...numbers){
+    let result = 0;
+    for(let number of numbers){
+        result += number;
+    }
+    return result / numbers.length;
+}
+
+const total = getAverage(75,100, 85, 90, 50 )
+console.log(total);
+
+
+
+
+function combineString(...strings){
+    return strings.join(" ")
+}
+
+combineString("90","days","mern", "challenge")
+console.log(fullName);
+
+
+
+
+
+
+
+
+
+
+
+
+// callback = a function is passed as an argument 
+//            to other function
+
+//            used to handle asynchronous funtion
+//            1 - Reading file 
+//            2 - Network request
+//            3 - Intracting databases
+
+//            "Hey, when Ypu're done, call this next."
+
+hello(wait);
+
+function hello(){
+    console.log("Helo");
+    Callback()
+}
+
+function wait(){
+    console.log("wait");
+}
+
+function leave(){
+    console.log("Leave!");
+}
+
+function goodbye(){
+    console.log("GoodBye");
+}
+
+
+sum(dislplayConsole, 1, 2);
+
+function sum(callback, x, y){
+    let result = x + y;
+    callback(result);
+}
+
+function dislplayConsole(result) {
+    console.log(result);
+}
+
+function displayPage(result) {
+    document.getElementById("myH1").textContent = result ;
+}
+
+
+
+
+
+// forEach = method used to iterate over the element
+//           of an array and apply a specific function (callback)
+//           to each element
+
+//           array.forEach(callback)
+
+
+let numbers = [1, 2, 3, 4, 5];
+
+numbers.forEach(double)
+numbers.forEach(display)
+numbers.forEach(cube)
+
+function double(element){
+    array[index] = element * 2;
+}
+
+function triple(element, index, array) {
+    array[index] = element * 2;
+}
+
+function square(element, index, array){
+    array[index] = Math.pow(element, 2)
+}
+
+function square(element, index, array) {
+    array[index] = Math.pow(element, 2);
+}
+
+function cube(element, index, array) {
+    array[index] = Math.pow(element, 3)
+}
+
+function display(element){
+    console.log(element);
+}
+
+
+
+
+
+
+
+
+
+
+
+// forEach = method used to iterate over the element
+//           of an array and apply a specific function (callback)
+//           to each element
+
+//           array.forEach(display);
+
+
+let fruits = ["Apple", "mango", "Orange", "Banana"]
+
+fruits.forEach(upperCase)
+fruits.forEach(lowercase)
+fruits.forEach(captalize)
+fruits.forEach(display);
+
+
+function upperCase(element, index, array) {
+    array[index] = element.toUpperCase();
+}
+
+function lowercase(element, index, array) {
+    Array[index] = element.toLowercase()
+}
+
+function captalize(element, index, array) {
+    array[index] = element.charAt(0).toUpperCase() + element.slice(1);
+}
+
+function display(element) {
+    console.log(element);
+}
+
+
+
+
+
+
+
+
+
+// .map() = accept a callback and applies that function
+//          to each element of an array, thyen return a new array
+
+
+const number = [1, 2, 3, 4, 5];
+const square = number.map(square)
+const squares = number.map(square);
+
+console.log(squares);
+
+function square(element) {
+    return Math.pow(element, 2)
+}
+
+function cube(element) {
+    return Math.pow(element, 2)
+}
+
+
+
+const students = ["Spongebob", "Patric", "Adhi", "Abin Abraham"]
+const studentsUpper = students.map(upperCase)
+const studentsLower = students.map(lowerCase)
+
+console.log(studentsLower);
+
+function upperCase(element) {
+    return element.toUpperCase()
+}
+
+function lowerCase(element) {
+    return element.toLowerCase();
+}
+
+
+
+const dates = ["2024-1-10","2025-7-3","2025-5-18"]
+const formattedDates = dates.map(formatDates);
+
+console.log(formattedDates);
+
+function formatDates(element) {
+    const parts = element.split("-");
+    return `${parts[1]}/${parts[2]}/${parts[0]}`;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .filter() = creates a new array by filtering
+//             out elements
+
+
+let numbers = [1, 2, 3, 4, 5, 6, 7];
+let evenNums = numbers.filter(isEven);
+let oddNums = numbers.filter(isOdd)
+
+console.log(oddNums);
+
+function isEven(element) {
+    return element % 2 === 0;
+}
+
+function isOdd(element) {
+    return element % 2 === 1;
+}
+
+
+
+
+
+
+
+
+const ages = [16, 17, 18, 19, 20, 40, 60];
+const adult = ages.filter(isAdult);
+const children = ages.filter(isChild)
+
+console.log(children);
+
+function isAdult(element) {
+    return element >= 18;
+}
+
+function isChild(element) {
+    return element < 18;
+}
+
+
+
+
+const words = ["Apple", "Mango", "Banana", "Kiwi", "Orange"]
+
+const shortWords = words.filter(getshortWords)
+const longWords = words.filter(getLongWords)
+
+console.log(shortWords);
+console.log(longWords);
+
+function getshortWords(element) {
+    return element.length <= 6;
+}
+
+function getLongWords(element) {
+    return element.length  > 6;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .reduce() = reduce the element of the array 
+//             to a single value 
+
+
+const price = [3, 40, 10, 35, 15, 20]
+
+const total = price.reduce(sum);
+
+console.log(`$${total.toFixed(2)}`);
+
+function sum(accumulator, element) {
+    return accumulator + element;
+}
+
+// function sum(45, 25) {
+//     return 45;
+// }
+
+
+
+
+const grades = [75, 50, 90, 80, 65, 95];
+
+const maximum = grades.reduce(getMax);
+const minimum = grades.reduce(getMin)
+
+console.log(maximum);
+console.log(minimum);
+
+function getMax(accumulator, element) {
+    return Math.max(accumulator, element);
+}
+
+function getMin(accumulator, element) {
+    return Math.min(accumulator, element);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function declaration = define a reusable block of code
+//                        that perform a specific task
+
+function hello() {
+    console.log("Hello");
+}
+
+// function expressions = a way to define functions as
+//                        values or valuables
+
+setTimeout(hello, 3000)
+
+
+setTimeout(function(){
+    console.log("helooo"),3000
+})
+
+
+
+
+const number = [1, 2, 3, 4, 5, 6, 7];
+
+// const square = number.map(square);
+// OR
+
+function square(element){
+    return Math.pow(element, 2)
+}
+
+const cube = number.map(function cube(element) {
+    return Math.pow(element, 3)
+});
+
+const evenNums = number.filter(function(element) {
+    return element % 2 === 0 ;
+})
+
+const oddNums = number.filter(function(element) {
+    return element % 2 !== 0 ;
+})
+
+const total = number.reduce(function(accumulator ,element) {
+    return accumulator + element;
+})
+
+console.log(total);
+
+
+
+
+
+// function expressions = a way to define functions as
+//                        values or valuables
+
+// 1. Callback in asynchronous opeations
+// 2. Higher-Order Funtion
+// 3. Clousures
+// 4. Event Listners
+
+const hello = function() {
+    console.log("Helooo");
+}
+
+setTimeout(function() {
+    console.log("GoodBye");
+},5000)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// arrow functions = a concise way to write function expressions
+//                   good for a simple functions that you use only once
+//                   (parameter) => some code
+
+
+const hello = () => {
+    console.log("helo");
+}
+
+hello();
+
+
+//parameter passing
+
+const hello = (name) => console.log(`Helo ${name}`);
+
+hello("Helo javascript")
+
+
+
+const hello = (name, old) => { console.log(`Helo ${name}`)
+                            console.log(`You are ${old} old`);};
+
+hello("Bro", 25)
+
+
+
+
+setTimeout(hello, 3000);
+
+function hello() {
+    console.log("Hello");
+}
+
+// this change to 
+
+
+setTimeout(function hello() {
+    console.log("Hello");
+}, 3000);
+
+// this change to
+
+setTimeout( ()=> console.log("heloo"),3000);    
+
+
+
+
+const numbers = [1, 2, 3, 4, 5, 6, 7]
+
+const squares = numbers.map((element) => Math.pow(element, 2));
+const cube = numbers.map((element) => Math.pow(element, 3));
+const evenNums = numbers.filter((element) => element % 2 === 0);
+const oddNum = numbers.filter((element) => element % 2 !== 0);
+const total = numbers.reduce((accumulator, element) => accumulator + element);
+
+
+console.log(total);
+
+
+
+
+
+
+
+
+
+
+
+
+// object = A collection of related properties and/or methods
+//          Can represent real world objects (peoples, products, places)
+//          object = {key : value,
+//                     function() }
+
+
+const person1 = {
+    firstName: "Abdu",
+    lastName: "Rahman",
+    age: 30,
+    isEmployed: true,
+    sayHello: function(){console.log("Hi! I am AbduRahman!")},
+    sayBye: function(){console.log("Good Bye");}
+};
+
+const person2 = {
+    firstName: "Patric",
+    lastName: "Start",
+    age: 24,
+    isEmployed: true,
+    sayHello: function(){console.log("Hi! I am Patric....")},
+    sayBye: function(){console.log("Good Bye");}
+};
+
+
+console.log(person1.firstName);
+console.log(person2.lastName);
+console.log(person1.age);
+console.log(person1.isEmployed);
+
+
+
+
+
+
+
+
+// this = reference to the oject where THIS is used
+//        (the object depends on the immedieate context)
+//        person.name = this.name
+
+console.log(this);
+
+const person1 = {
+    name: "Abin",
+    favFood: "Kuzhi Mandhi",
+    sayHello: function(){console.log(`Hi! I am ${this.name}`)},
+    eat: function(){console.log(`${this.name} is eating ${this.favFood}`)}
+}
+const person2 = {
+    name: "Adhil",
+    favFood: "Kuzhi Mandhi",
+    sayHello: function(){console.log(`Hi! I am ${person2.name}`)},
+    eat: function(){console.log(`${person2.name} is eating ${person2.favFood}`)}
+}
+
+person1.sayHello()
+person2.eat()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// contructor = special method for defining the 
+//              properties and methods of objects
+
+
+const car1 = {
+    make: "Ford",
+    model: "Mustang",
+    year: 2024,
+    color:"red",
+    drive: function(){console.log(`You drive the ${this.model}`)}
+}
+const car2 = {
+    make: "Chevrolet",
+    model: "Camaro",
+    year: 2024,
+    color:"blue",
+    drive: function(){console.log(`You drive the ${this.model}`)}
+}
+const car3 = {
+    make: "Dodge",
+    model: "Charger",
+    year: 2024,
+    color:"silver",
+    drive: function(){console.log(`You drive the ${this.model}`)}
+}
+
+
+
+
+
+
+
+
+
+// contructor = special method for defining the 
+//              properties and methods of objects
+
+
+
+function Car(make, model, year, color) {
+    this.make = make,
+    this.model = model,
+    this.year = year,
+    this.color = color
+}
+
+const car1 = new Car("Ford", "Mustang", 2025, "red");
+const car2 = new Car("Chevrolet", "Camaro", 2024, "blue");
+const car3 = new Car("Dodge", "Charger", 2026, "silver");
+
+console.log(car1.make);
+console.log(car1.model);
+console.log(car1.year);
+console.log(car1.color);
+
+console.log(car2.make);
+console.log(car2.model);
+console.log(car2.year);
+console.log(car2.color);
+
+console.log(car2.make);
+console.log(car2.model);
+console.log(car2.year);
+console.log(car2.color);
+
+
+
+
+
+
+function Car(make, model, year, color) {
+    this.make = make,
+    this.model = model,
+    this.year = year,
+    this.color = color,
+    this.drive = function(){console.log(`You drive the ${this.model}`);}
+}
+
+const car1 = new Car("Ford", "Mustang", 2025, "red");
+const car2 = new Car("Chevrolet", "Camaro", 2024, "blue");
+const car3 = new Car("Dodge", "Charger", 2026, "silver");
+
+ car1.drive();
+ car2.drive();
+ car3.drive();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ // Class = (ES6 feature) provides a more structure and cleaner way to
+//          work with objects compared to traditional constructor function 
+//          ex. static keyword, encapsulation, inheritance
+
+function Product(name, price) {
+    this.name = name;
+    this.price = price;
+
+    this.displayProduct = function() {
+        console.log(`Product: ${this.name}`);
+        console.log(`Price: ${this.price.toFixed(2)}`);
+    };
+
+    this.calculateTotal = function(salesTax) {
+        return this.price + (this.price * salesTax);
+    }
+}
+
+const salesTax = 0.05;
+
+const product1 = new Product("Shirt", 19.99);
+const product2 = new Product("Pants", 22.50);
+const product3 = new Product("Kurtha",100.00)
+
+product1.displayProduct();
+
+const totalPrice = product1.calculateTotal(salesTax)
+
+console.log(`Total Price (with tax): $${totalPrice.toFixed(2)}`);
+
+
+
+
+
+
+
+
+
+
+
+
+class Product {
+    constructor (name,price){
+        this.name = name;
+        this.price = price;
+    }
+
+    displayProduct() {
+        console.log(`Product: ${this.name}`);
+        console.log(`Product: ${this.price.toFixed(2)}`);
+    }
+
+    calcuateTotal(salesTax) {
+        return this.price + (this.price * salesTax);
+
+    }
+}
+const  salesTax = 0.05;
+
+const Product1 = new Product("Shirt",19.99);
+const Product2 = new Product("Pants",22.50);
+const Product3 = new Product("Kurtha",110.99);
+
+
+// ✅ Call method on object, not class
+Product1.displayProduct();
+
+const total = Product1.calcuateTotal(salesTax);
+
+console.log(`Total price (with tax): $${total.toFixed(2)}`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// static = keyword that defines properties or methods that belong 
+//          to a class itself rather than the obects created
+//          from that class (class owns anything sttic, not the objects)
+
+
+class MathUtil{
+    static PI = 3.14159;
+
+
+    static getDiameter(radius){
+        return radius * 2;
+    }
+
+    static getCircumference(radius) {
+        return 2 * this.PI * radius;
+    }
+
+    static getArea(radius) {
+        return this.PI * radius * radius;
+    }
+}
+
+console.log(MathUtil.PI);
+console.log(MathUtil.getDiameter(10));
+console.log(MathUtil.getCircumference(10));
+console.log(MathUtil.getArea(10));
+
+
+
+
+
+class User {
+    static userCount = 0;
+
+    constructor(username) {
+        this.username = username;
+        User.userCount++;
+    }
+
+    static getUserCount(){
+        console.log(`There are ${User.userCount} users online`);
+    }
+
+    sayHello(){
+        console.log(`Hello, my username is ${this.username}`);
+    }
+}
+
+const user1 = new User("SpooneBob");
+const user2 = new User("Patric");
+const user3 = new User("Sandy");
+
+// console.log(user1.username);
+// console.log(user2.username);
+// console.log(user3.username);
+// console.log(User.userCount);
+
+
+
+user1.sayHello();
+user2.sayHello();
+user3.sayHello();
+
+User.getUserCount
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// inheritance = allows a new class to inherit properties and methods
+//               from an exixtance class (parent -> child)
+//               helps with code reusability
+
+
+class Animal {
+    alive = true;
+
+    eat() {
+        console.log(`This ${this.name} is eating`);
+    }
+    sleep() {
+        console.log(`This ${this.name} is sleeping`);
+    }
+}
+
+class Rabbit extends Animal {
+    name = "rabbit";
+
+    run() {
+        console.log(`This ${this.name} is running`);
+    }
+}
+
+class Fish extends Animal {
+    name = "fish";
+
+    swim() {
+        console.log(`This ${this.name} is swimming`);
+    }
+}
+
+class Hawk extends Animal {
+    name = "hawk"
+
+    run() {
+        console.log(`This ${this.name} is running`);
+    }
+}
+
+
+const rabbit = new Rabbit();
+const fish = new Fish();
+const hawk = new Hawk()
+
+// rabbit.alive = false; 
+
+console.log(rabbit.alive);
+fish.eat();
+rabbit.eat();
+rabbit.sleep();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// super = Keyword is used in classes to call the consructor or
+//         access the properties and method of parrent (superclass)
+//         this = this.object
+//         super = the parent
+
+
+
+class Animal {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    move(speed) {
+        console.log(`The ${this.name} move at a speed of ${speed}mph`);
+    }
+}
+class Rabbit extends Animal {
+
+    constructor(name, age, runSpeed) {
+        super(name, age);
+        this.runSpeed = runSpeed;
+    }
+
+    run() {
+        console.log(`This ${this.name} can run`);
+        super.move(this.runSpeed);
+    }
+}
+class Fish extends Animal {
+    constructor(name, age, swimSpeed) {
+        super(name, age);
+        this.swimSpeed = swimSpeed;
+    }
+    swim() {
+        console.log(`This ${this.name} can swim`);
+        super.move(this.swimSpeed)
+    }
+}
+class Hawk extends Animal {
+    constructor(name, age, flySpeed) {
+        super(name, age);
+        this.flySpeed = flySpeed;
+    }
+    fly() {
+        console.log(`This ${this.name} can fly`);
+    }
+}
+
+
+const rabbit = new Rabbit("rabbit", 1, 25)
+const fish = new Fish("fish", 2, 12)
+const hawk = new Hawk("hawk", 3, 50)
+
+console.log(rabbit.name);
+console.log(rabbit.age);
+console.log(rabbit.runSpeed);
+
+fish.swim()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// getter = special method that makes a property readable
+// setter = special method that makes a property writable
+
+// validate and modify a value when reading/writing a property
+
+
+class Rectangle {
+    constructor(width, height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    set width(newWidth) {
+        if(newWidth > 0){
+            this._width = newWidth;
+        }
+        else {
+            console.error("width must be a positive number");
+        }
+    }
+
+    set height(newHeight){
+        if(newHeight) {
+            this._height = newHeight;
+        }
+        else {
+            console.error("height must be positive number");
+        }
+    }
+
+    get width(){
+        return `${this._width.toFixed(1)}cm`;
+    }
+
+    get height() {
+        return `${this._height.toFixed(1)}cm`;
+    }
+
+    get area() {
+        return `${this._height * this._width.toFixed(1)}cm^2`;
+    } 
+}
+
+const rectangle = new Rectangle(3, 4);
+
+rectangle.width = 5;
+rectangle.height = 8;
+
+console.log(rectangle.width);
+console.log(rectangle.height);
+console.log(rectangle.area);
+
+
+
+
+
+
+
+
+class Person {
+    constructor (firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+    }
+
+    set firstName(newFirstName) {
+        if(typeof newFirstName === "string" && newFirstName.length > 0) {
+            this._firstName = newFirstName;
+        }
+        else {
+            console.error("First name must be a non-empty string");
+        }
+    }
+
+        set lastName(newLastName) {
+        if(typeof newLastName === "string" && newLastName.length > 0) {
+            this._lastName = newLastName;
+        }
+        else {
+            console.error("First name must be a non-empty string");
+        }
+    }
+
+        set age(newAge) {
+        if(typeof newAge === "number" && newAge >= 0) {
+            this._age = newAge;
+        }
+        else {
+            console.error("Age must be non-negative number");
+        }
+    }
+
+    get firstName() {
+        return this._firstName;
+    }
+
+    get lastName() {
+        return this._lastName;
+    }
+
+    get fullName() {
+        return this._firstName + " " + this._lastName;
+    }
+
+    get age() {
+        return this._age;
+    }
+}
+
+const person = new Person("songebob", "Squarepant", 30);
+
+console.log(person.firstName);
+console.log(person.lastName);
+console.log(person.age);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// destruturing = extract values from arrays and objects,
+//                then assign them to varriable in a convient way 
+//                [] = to perform array destructuring
+//                {} = to perform object destructring
+//                5 examples
+
+
+// ----------- EXAMPLE 1 ---------------
+
+// SWAP THE VALUE OF TWO VARRIABLES
+
+let a = 1;
+let b = 2;
+
+[a, b] = [b,a];
+
+console.log(a);
+console.log(b);
+
+
+
+
+
+const colors = ["red", "green", "blue", "black", "white"];
+
+[colors[0], colors[4]] = [colors[4], colors[0]]
+
+console.log(colors);
+
+
+const colors = ["red", "green", "blue", "black", "white"];
+
+const [firstColor, secondColor, thirdColor, ...extraColors] = colors;
+
+console.log(firstColor);
+console.log(secondColor);
+console.log(thirdColor);
+console.log(extraColors);
+
+
+
+
+
+// SWAP THE VALUE OF obects
+
