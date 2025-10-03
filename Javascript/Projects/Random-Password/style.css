@@ -27,27 +27,13 @@ html, body{
   box-shadow: var(--shadow);
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:12px;
-}
-
-.logo{
-  width:44px; height:44px;
-  background: var(--accent);
-  border-radius:10px;
-  display:grid; place-items:center;
-  font-weight:700;
-}
-
 .output{
   display:flex;
   gap:10px;
   margin-bottom:12px;
   align-items:center;
 }
+
 
 .password-value{
   flex:1;
@@ -72,43 +58,4 @@ html, body{
 .btn.primary{
   background: var(--accent);
   color:white;
-}
-
-.controls{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-}
-
-.slider-wrap{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.toggles label{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:14px;
-}
-
-.strength-bar{
-  height:10px;
-  width:100%;
-  background: rgba(255,255,255,0.05);
-  border-radius:5px;
-  overflow:hidden;
-}
-
-.strength-fill{
-  height:100%;
-  width:0%;
-  border-radius:5px;
-  transition: width .3s ease, background .3s ease;
-}
-
-.strength-text{
-  font-size:13px;
-  margin-top:6px;
 }
