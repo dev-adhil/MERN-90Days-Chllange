@@ -13,6 +13,7 @@ const questions = [
     answer: "object"
   },
   {
+    
     id: 3,
     question: "Which symbol is used for comments in JavaScript?",
     options: ["//", "/* */", "<!-- -->", "#"],
