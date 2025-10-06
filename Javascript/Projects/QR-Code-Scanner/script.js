@@ -10,7 +10,7 @@ function fetchRequest(formData, file) {
   infoText.innerText = "Scaning QR Code..."
   //SENDING POST REQUEST TO QR SERVER API WITH PASSING
   // FORM DATA AS BODY AND GETTING RESPONSE FROM IT 
-  fetch("http://api.qrserver.com/v1/read-qr-code/", {
+  fetch("https://api.qrserver.com/v1/read-qr-code/", {
     method: "POST", body: formData
   }).then(res => res.json()).then(result => {
     result = result[0].symbol[0].data;
