@@ -108,3 +108,73 @@ h1 {
   background: var(--button-hover);
   transform: scale(1.05);
 }
+
+#gameOverMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(0,0,0,0.8);
+  padding: 30px 50px;
+  border-radius: 15px;
+  display: none; /* Hidden by default */
+  text-align: center;
+  z-index: 10;
+}
+
+#gameOverMessage button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#gameOverMessage button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}
+
+
+
+
+.mobile-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 15px;
+  margin-top: 5px;
+  padding: 10px 6px;
+  width: 410px;
+  border-radius: 10px;
+  background-color: var(--info-bg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.middle-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.mobile-controls button {
+  padding: 10px 20px;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mobile-controls button:hover {
+  background-color: var(--button-hover);
+  transform: scale(1.05);
+}

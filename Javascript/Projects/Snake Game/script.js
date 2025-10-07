@@ -1,7 +1,17 @@
 const board = document.getElementById("board");
 const scoreDisplay = document.getElementById("score");
+const highScoreDisplay = document.getElementById("HighScore");
 const restartBtn = document.getElementById("restart");
 const toggleBtn = document.getElementById('themeToggle');
+const gameOverMessage = document.getElementById("gameOverMessage");
+const gameOverText = document.getElementById("gameOverText");
+const restartOverlay = document.getElementById("restartOverlay");
+
+
+const upBtn = document.getElementById("up");
+const downBtn = document.getElementById("down");
+const leftBtn = document.getElementById("left");
+const rightBtn = document.getElementById("right");
 
 
 const boardSize = 20;
@@ -9,8 +19,11 @@ let snake = [{ x: 10, y: 10 }];
 let food = { x: 5, y: 5 };
 let direction = { x: 0, y: 0 };
 let score = 0;
+let highScore = localStorage.getItem("snakeHighScore") || 0;
+highScoreDisplay.textContent = highScore;
 let gameInterval;
-
+gameOverMessage.style.display = "none";
+  
 toggleBtn.addEventListener('click', () => {
   document.body.classList.toggle('light-mode');
 
@@ -57,6 +70,19 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
+upBtn.addEventListener("click", () => {
+  if (direction.y === 0) direction = { x: 0, y: -1 };
+});
+downBtn.addEventListener("click", () => {
+  if (direction.y === 0) direction = { x: 0, y: 1 };
+});
+leftBtn.addEventListener("click", () => {
+  if (direction.x === 0) direction = { x: -1, y: 0 };
+});
+rightBtn.addEventListener("click", () => {
+  if (direction.x === 0) direction = { x: 1, y: 0 };
+});
+
 function moveSnake() {
   const head = { x: snake[0].x + direction.x, y: snake[0].y + direction.y };
   snake.unshift(head);
@@ -68,6 +94,13 @@ function checkFoodCollision() {
   if (head.x === food.x && head.y === food.y) {
     score++;
     scoreDisplay.textContent = score;
+
+        if (score > highScore) {
+      highScore = score;
+      highScoreDisplay.textContent = highScore;
+      localStorage.setItem("snakeHighScore", highScore);
+    }
+
     const tail = snake[snake.length - 1];
     snake.push({ ...tail });
     food = generateFood();
@@ -99,8 +132,10 @@ function checkCollision() {
 
 function gameOver() {
   clearInterval(gameInterval);
-  alert("💀 Game Over! Your Score: " + score);
+  gameOverText.textContent = "💀 Game Over! Your Score: " + score;
+  gameOverMessage.style.display = "block";
 }
+
 
 function gameLoop() {
   moveSnake();
@@ -125,6 +160,19 @@ restartBtn.addEventListener("click", () => {
   scoreDisplay.textContent = score;
   startGame();
 });
+
+restartOverlay.addEventListener("click", () => {
+  snake = [{ x: 10, y: 10 }];
+  direction = { x: 0, y: 0 };
+  food = generateFood();
+  score = 0;
+  scoreDisplay.textContent = score;
+
+  gameOverMessage.style.display = "none";
+
+  startGame();
+});
+
 
 draw();
 startGame();
