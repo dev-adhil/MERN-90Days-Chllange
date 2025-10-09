@@ -89,3 +89,37 @@ document.addEventListener('mouseup', () => {
   saveAllNotes();
 });
 
+
+// Touch start (similar to mousedown)
+document.addEventListener('touchstart', (event) => {
+  const target = event.target.closest('.note');
+  if (!target) return;
+  const touch = event.touches[0];
+  cursor = { x: touch.clientX, y: touch.clientY };
+  note = {
+    dom: target,
+    x: target.offsetLeft,
+    y: target.offsetTop
+  };
+  note.dom.style.position = 'absolute';
+});
+
+// Touch move (similar to mousemove)
+document.addEventListener('touchmove', (event) => {
+  if (note.dom == null) return;
+  const touch = event.touches[0];
+  let distance = {
+    x: touch.clientX - cursor.x,
+    y: touch.clientY - cursor.y
+  };
+  note.dom.style.left = (note.x + distance.x) + 'px';
+  note.dom.style.top = (note.y + distance.y) + 'px';
+});
+
+// Touch end (similar to mouseup)
+document.addEventListener('touchend', () => {
+  if (note.dom == null) return;
+  note.dom = null;
+  saveAllNotes();
+});
+
