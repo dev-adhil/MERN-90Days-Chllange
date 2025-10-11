@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+
+</head>
+<body>
+  <div class="main">
+    <h2>Task Manager</h2>
+
+    <div id="textbox">
+      <input type="text" id="taskInput" placeholder="Enter a new task" />
+      <button id="addBtn">Add Task</button>
+    </div>
+
+    <div class="task-container">
+      <div class="task-section">
+        <h3>New Tasks</h3>
+        <ul id="newList">
+          <li>
+            Learn CSS
+            <span class="task-icons">
+              <i class="fa-solid fa-pen-to-square edit-btn"></i>
+              <i class="fa-solid fa-trash delete-btn"></i>
+            </span>
+          </li> 
+        </ul>
+      </div>
+
+      <div class="task-section">
+        <h3>Pending Tasks</h3>
+        <ul id="pendingList">
+          <li>
+            Practice React
+            <span class="task-icons">
+              <i class="fa-solid fa-pen-to-square edit-btn"></i>
+              <i class="fa-solid fa-trash delete-btn"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Completed Tasks -->
+      <div class="task-section">
+        <h3>Completed Tasks</h3>
+        <ul id="completedList">
+          <li>
+            Finish Java Project
+            <span class="task-icons">
+              <i class="fa-solid fa-trash delete-btn"></i>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
