@@ -3,19 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
   <title>Recipe App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <nav>
-      <h1>Recipe App</h1>
+      <h1 class="home">Recipe App</h1>
       <form>
         <input type="text" placeholder="Search Recipe..." class="SearchBox">
         <button class="searchBtn" type="submit">Search</button>
       </form>
     </nav>
   </header>
+
+  <div class="categories">
+    <button>Breakfast</button>
+    <button>Lunch</button>
+    <button>Dinner</button>
+    <button>Dessert</button>
+    <button>Snacks</button>
+    <button>Drinks</button>
+    <!-- add more buttons -->
+  </div>
+
+  </div>
 
   <main>
     <section>
@@ -24,8 +37,10 @@
       </div>
       <div class="recipe-details">
         <button type="button" class="recipe-close-btn">
-          
+          <i class="fa-solid fa-xmark"></i>
         </button>
+
+        <div class="recipe-details-content"></div>
       </div>
     </section>
   </main>
